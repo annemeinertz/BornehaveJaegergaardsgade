@@ -1,6 +1,3 @@
-
-
-
 map.on('load', function() {
     map.loadImage('../images/marker.png', function(error, image) {
         if (error) throw error;
