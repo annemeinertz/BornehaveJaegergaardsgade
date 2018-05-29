@@ -498,6 +498,7 @@ body {
         font-size: 1.25em;
         padding: .4em .7em;
         cursor: pointer;
+        z-index: 1;
     }
     .icons-flex-container {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.29);
