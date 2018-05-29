@@ -157,7 +157,7 @@ map.on('load', function() {
 
 !function() {
 
-  // Viser hvilken dag det er //
+  // VISER HVILKEN DAG DET ER //
      var today = moment();
 
   function Calendar(selector, events) {
@@ -175,10 +175,10 @@ map.on('load', function() {
   }
 
   Calendar.prototype.draw = function() {
-    //Create Header
+    //HEADER LAVES //
     this.drawHeader();
 
-    //Draw Month
+    //TEGNET MÅNED //
     this.drawMonth();
 
     this.drawLegend();
@@ -187,7 +187,7 @@ map.on('load', function() {
   Calendar.prototype.drawHeader = function() {
     var self = this;
     if(!this.header) {
-      //Create the header elements
+      //LAVER HEADER ELEMENTERNE
       this.header = createElement('div', 'header');
       this.header.className = 'header';
 
@@ -199,7 +199,7 @@ map.on('load', function() {
       var left = createElement('div', 'left');
       left.addEventListener('click', function() { self.prevMonth(); });
 
-      //Append the Elements
+      //TILFØJER ELEMENTER //
       this.header.appendChild(this.title); 
       this.header.appendChild(right);
       this.header.appendChild(left);
@@ -211,7 +211,7 @@ map.on('load', function() {
 
   Calendar.prototype.drawMonth = function() {
     var self = this;
-    
+    //PLACERE DAGENE RANDOM 
     this.events.forEach(function(ev) {
      ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);;
     });
@@ -285,20 +285,20 @@ map.on('load', function() {
     var self = this;
     this.getWeek(day);
 
-    //Outer Day
+    // ANDRE DAGE
     var outer = createElement('div', this.getDayClass(day));
     outer.addEventListener('click', function() {
-      self.openDay(this);
+      self.openDay(this); 
     });
 
-    //Day Name
+    // UGE DAGE //
     var name = createElement('div', 'day-name', day.format('ddd'));
 
-    //Day Number
+    // DATOER //
     var number = createElement('div', 'day-number', day.format('DD'));
 
 
-    //Events
+    // BEGIVENHEDER //
     var events = createElement('div', 'day-events');
     this.drawEvents(day, events);
 
@@ -341,12 +341,12 @@ map.on('load', function() {
 
     var currentOpened = document.querySelector('.details');
 
-    //Check to see if there is an open detais box on the current row
+    //ÅBEN DETALJERINGSBOKS PÅ DEN AKUTELLE RÆKKE //
     if(currentOpened && currentOpened.parentNode === el.parentNode) {
       details = currentOpened;
       arrow = document.querySelector('.arrow');
     } else {
-      //Close the open events on differnt week row
+      //LUK DE ÅBNE BEGIVENHEDER PÅ FORSKELLIGE UGEDAGE
       //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
       if(currentOpened) {
         currentOpened.addEventListener('webkitAnimationEnd', function() {
@@ -364,14 +364,13 @@ map.on('load', function() {
         currentOpened.className = 'details out';
       }
 
-      //Create the Details Container
+      //LAV DETAJLE ELEMENTER
       details = createElement('div', 'details in');
 
-      //Create the arrow
+      //LAV PILEN TIL DETALJEBOKSEN
       var arrow = createElement('div', 'arrow');
 
-      //Create the event wrapper
-
+      //LAVER EVENT WRAPPER 
       details.appendChild(arrow);
       el.parentNode.appendChild(details);
     }
@@ -389,7 +388,7 @@ map.on('load', function() {
   }
 
   Calendar.prototype.renderEvents = function(events, ele) {
-    //Remove any events in the current details element
+    //FJERNER EVENT I DEN NUVÆRENDE DETALJE BOKS
     var currentWrapper = ele.querySelector('.events');
     var wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
 
